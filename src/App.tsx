@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { UIProvider } from './contexts/UIContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import Quotation from './pages/Quotation';
@@ -38,13 +39,15 @@ const AppRoutes = () => {
 function App() {
   return (
     <LanguageProvider>
-      <UIProvider>
-        <Router>
-          <Layout>
-            <AppRoutes />
-          </Layout>
-        </Router>
-      </UIProvider>
+      <AuthProvider>
+        <UIProvider>
+          <Router>
+            <Layout>
+              <AppRoutes />
+            </Layout>
+          </Router>
+        </UIProvider>
+      </AuthProvider>
     </LanguageProvider>
   );
 }
