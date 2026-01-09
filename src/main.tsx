@@ -3,7 +3,9 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './styles/globals.css';
 import './styles/rtl.scss';
+import './lib/firebase'; // Ensure Firebase is initialized early
 import App from './App'
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
