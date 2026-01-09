@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Link } from 'react-router-dom';
 import '../styles/Quotation.css';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, ProgressBar } from 'react-bootstrap';
+import { storage } from '../lib/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 type QuoteType = 'certified' | 'professional';
 type Urgency = 'none' | 'priority';
@@ -31,8 +33,11 @@ const Quotation = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [deliveryDate, setDeliveryDate] = useState('');
 
-  // Modal State
+  // Modal & Upload State
   const [showModal, setShowModal] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   // Effect to calculate quote
   useEffect(() => {
@@ -60,7 +65,7 @@ const Quotation = () => {
     // Format date based on language
     setDeliveryDate(date.toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US', { weekday: 'long', month: 'long', day: 'numeric' }));
 
-  }, [activeTab, certifiedPages, certifiedUrgency, professionalWords, professionalUrgency, language, certifiedFrom, certifiedTo, professionalFrom, professionalTo]); // Dependencies
+  }, [activeTab, certifiedPages, certifiedUrgency, professionalWords, professionalUrgency, language, certifiedFrom, certifiedTo, professionalFrom, professionalTo]);
 
   const handleContinue = () => {
     const newErrors: {[key: string]: string} = {};
@@ -83,10 +88,58 @@ const Quotation = () => {
     }
   };
 
-  const handleModalSubmit = (e: React.FormEvent) => {
+  const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Request Sent! (This is a demo, no email sent)");
+    setIsUploading(true);
+    setUploadProgress(0);
+
+    const filesToUpload = activeTab === 'certified' ? certifiedFiles : professionalFiles;
+    const uploadedUrls: string[] = [];
+
+    if (filesToUpload) {
+      const totalFiles = filesToUpload.length;
+      let filesProcessed = 0;
+
+      for (let i = 0; i < totalFiles; i++) {
+        const file = filesToUpload[i];
+        const storageRef = ref(storage, `quotations/${Date.now()}_${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        await new Promise<void>((resolve, reject) => {
+          uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              // Simple progress calculation across all files
+              setUploadProgress(((filesProcessed + progress / 100) / totalFiles) * 100);
+            },
+            (error) => {
+              console.error("Upload error:", error);
+              reject(error);
+            },
+            async () => {
+              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+              uploadedUrls.push(downloadURL);
+              filesProcessed++;
+              resolve();
+            }
+          );
+        });
+      }
+    }
+
+    console.log("Request Data:", {
+      ...formData,
+      type: activeTab,
+      totalPrice,
+      deliveryDate,
+      files: uploadedUrls
+    });
+
+    alert(t('requestSent') || "Request Sent!");
+    setIsUploading(false);
     setShowModal(false);
+    setUploadProgress(0);
   };
 
   return (
@@ -170,7 +223,6 @@ const Quotation = () => {
               </div>
             ) : (
                <div id="professionalForm">
-                  {/* Professional Form Inputs - similar structure */}
                   <div className="form-group">
                   <label>{t('from')}</label>
                   <select value={professionalFrom} onChange={(e) => setProfessionalFrom(e.target.value)}>
@@ -245,26 +297,54 @@ const Quotation = () => {
         </div>
       </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Complete Your Request</Modal.Title>
+      <Modal show={showModal} onHide={() => !isUploading && setShowModal(false)} centered>
+        <Modal.Header closeButton={!isUploading}>
+          <Modal.Title>{t('completeYourRequest') || 'Complete Your Request'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleModalSubmit}>
             <div className="mb-3">
-              <label className="form-label">Name</label>
-              <input type="text" className="form-control" required />
+              <label className="form-label">{t('name') || 'Name'}</label>
+              <input 
+                type="text" 
+                className="form-control" 
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                required 
+                disabled={isUploading}
+              />
             </div>
             <div className="mb-3">
-              <label className="form-label">Email</label>
-              <input type="email" className="form-control" required />
+              <label className="form-label">{t('email') || 'Email'}</label>
+              <input 
+                type="email" 
+                className="form-control" 
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                required 
+                disabled={isUploading}
+              />
             </div>
             <div className="mb-3">
-              <label className="form-label">Message</label>
-              <textarea className="form-control" rows={3}></textarea>
+              <label className="form-label">{t('message') || 'Message'}</label>
+              <textarea 
+                className="form-control" 
+                rows={3}
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                disabled={isUploading}
+              ></textarea>
             </div>
-            <Button variant="primary" type="submit" className="w-100">
-              Send Request
+            
+            {isUploading && (
+              <div className="mb-3">
+                <ProgressBar now={uploadProgress} label={`${Math.round(uploadProgress)}%`} animated />
+                <small className="text-muted d-block mt-1 text-center">Uploading files...</small>
+              </div>
+            )}
+
+            <Button variant="primary" type="submit" className="w-100" disabled={isUploading}>
+              {isUploading ? (t('sending') || 'Sending...') : (t('sendRequest') || 'Send Request')}
             </Button>
           </form>
         </Modal.Body>
@@ -274,3 +354,4 @@ const Quotation = () => {
 };
 
 export default Quotation;
+

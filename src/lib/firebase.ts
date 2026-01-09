@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
 
 // Config provided for the live site
 const firebaseConfig = {
@@ -23,4 +24,8 @@ export const analytics = typeof window !== "undefined" ? getAnalytics(firebaseAp
 export const auth = getAuth(firebaseApp);
 export const googleProvider = new GoogleAuthProvider();
 
+// Initialize Firebase Storage
+export const storage = getStorage(firebaseApp);
+
 export default firebaseApp;
+
