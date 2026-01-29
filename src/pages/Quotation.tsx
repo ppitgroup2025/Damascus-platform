@@ -3,8 +3,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Link } from 'react-router-dom';
 import '../styles/Quotation.css';
 import { Modal, Button, ProgressBar } from 'react-bootstrap';
-import { storage } from '../lib/firebase';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { supabase } from '../lib/supabase';
 
 type QuoteType = 'certified' | 'professional';
 type Urgency = 'none' | 'priority';
@@ -98,33 +97,27 @@ const Quotation = () => {
 
     if (filesToUpload) {
       const totalFiles = filesToUpload.length;
-      let filesProcessed = 0;
 
       for (let i = 0; i < totalFiles; i++) {
         const file = filesToUpload[i];
-        const storageRef = ref(storage, `quotations/${Date.now()}_${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
+        const fileName = `${Date.now()}_${file.name}`;
+        
+        const { error } = await supabase.storage
+          .from('quotations')
+          .upload(fileName, file);
 
-        await new Promise<void>((resolve, reject) => {
-          uploadTask.on(
-            'state_changed',
-            (snapshot) => {
-              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              // Simple progress calculation across all files
-              setUploadProgress(((filesProcessed + progress / 100) / totalFiles) * 100);
-            },
-            (error) => {
-              console.error("Upload error:", error);
-              reject(error);
-            },
-            async () => {
-              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-              uploadedUrls.push(downloadURL);
-              filesProcessed++;
-              resolve();
-            }
-          );
-        });
+        if (error) {
+          console.error("Upload error:", error);
+          alert("Upload failed for: " + file.name);
+          continue;
+        }
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('quotations')
+          .getPublicUrl(fileName);
+
+        uploadedUrls.push(publicUrl);
+        setUploadProgress(((i + 1) / totalFiles) * 100);
       }
     }
 
@@ -141,6 +134,7 @@ const Quotation = () => {
     setShowModal(false);
     setUploadProgress(0);
   };
+
 
   return (
     <div className="container mt-5">
