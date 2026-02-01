@@ -6,12 +6,69 @@ export default {
         if (url.pathname === '/api/send-email' && request.method === 'POST') {
             try {
                 const data = await request.json() as any;
-                const { name, email, service, message, fileLinks } = data;
+                const { name, email, service, message, fileLinks, details } = data;
+                const isQuotation = service && service.includes('Quotation');
 
-                // For the quotation form, include file links formatted nicely
+                // Professional Email Styling
+                const emailStyles = `
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    line-height: 1.6;
+                    color: #333;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    border: 1px solid #eee;
+                    padding: 20px;
+                    border-radius: 10px;
+                `;
+
+                const headerStyles = `
+                    background-color: #007bff;
+                    color: white;
+                    padding: 15px;
+                    border-radius: 8px 8px 0 0;
+                    margin: -20px -20px 20px -20px;
+                    text-align: center;
+                `;
+
+                // Handle file links for Quotations
                 const fileLinksHtml = fileLinks && fileLinks.length > 0
-                    ? `<h3>Uploaded Files:</h3><ul>${fileLinks.map((link: string) => `<li><a href="${link}">${link}</a></li>`).join('')}</ul>`
+                    ? `
+                        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h3 style="margin-top: 0; color: #007bff;">📄 Uploaded Documents:</h3>
+                            <ul style="padding-left: 20px;">
+                                ${fileLinks.map((link: string) => `<li style="margin-bottom: 8px;"><a href="${link}" style="color: #007bff;">Download File</a></li>`).join('')}
+                            </ul>
+                        </div>`
                     : '';
+
+                // Generate HTML Body
+                const htmlBody = `
+                    <div style="${emailStyles}">
+                        <div style="${headerStyles}">
+                            <h2 style="margin: 0;">${isQuotation ? 'New Quotation Request' : 'New Contact Inquiry'}</h2>
+                        </div>
+                        <p><strong>Customer Name:</strong> ${name}</p>
+                        <p><strong>Email Address:</strong> <a href="mailto:${email}">${email}</a></p>
+                        <p><strong>Service Type:</strong> ${service || 'General'}</p>
+                        
+                        ${details ? `<div style="background: #e9ecef; padding: 10px; margin: 15px 0; border-radius: 5px;">
+                            <strong>Quote Details:</strong><br/>
+                            <pre style="white-space: pre-wrap; font-family: inherit;">${details}</pre>
+                        </div>` : ''}
+
+                        <p><strong>Message:</strong></p>
+                        <div style="background: #fff; border-left: 4px solid #007bff; padding: 10px 15px; font-style: italic;">
+                            ${message || 'No message provided.'}
+                        </div>
+
+                        ${fileLinksHtml}
+
+                        <hr style="margin-top: 30px; border: 0; border-top: 1px solid #eee;" />
+                        <p style="font-size: 0.8rem; color: #777; text-align: center;">
+                            This is an automated notification from the Damascus Translation website.
+                        </p>
+                    </div>
+                `;
 
                 const resendResponse = await fetch('https://api.resend.com/emails', {
                     method: 'POST',
@@ -21,17 +78,9 @@ export default {
                     },
                     body: JSON.stringify({
                         from: 'Damascus Translation <onboarding@resend.dev>',
-                        to: ['jalalaljabri63@gmail.com'], // The boss's email
-                        subject: `New Request: ${service || 'General Inquiry'}`,
-                        html: `
-                            <h2>New Submission from Damascus Website</h2>
-                            <p><strong>Name:</strong> ${name}</p>
-                            <p><strong>Email:</strong> ${email}</p>
-                            <p><strong>Service:</strong> ${service || 'Contact Form'}</p>
-                            <p><strong>Message:</strong></p>
-                            <p>${message}</p>
-                            ${fileLinksHtml}
-                        `,
+                        to: ['jalalaljabri63@gmail.com'],
+                        subject: `${isQuotation ? '⚡ QUOTE' : '✉️ CONTACT'}: ${name}`,
+                        html: htmlBody,
                     }),
                 });
 
