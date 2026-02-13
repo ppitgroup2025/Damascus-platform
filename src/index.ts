@@ -3,13 +3,12 @@ export default {
         const url = new URL(request.url);
 
         try {
-            // API: Send Email via Resend
+            // 1. API: Send Email via Resend
             if (url.pathname === '/api/send-email' && request.method === 'POST') {
                 const data = await request.json() as any;
                 const { name, email, service, message, fileLinks, details } = data;
                 const isQuotation = service && service.includes('Quotation');
 
-                // Professional Email Styling
                 const emailStyles = `font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;`;
                 const headerStyles = `background: #007bff; color: white; padding: 15px; border-radius: 8px 8px 0 0; text-align: center;`;
 
@@ -43,35 +42,35 @@ export default {
                     }),
                 });
 
-                if (!resendResponse.ok) {
-                    const errorText = await resendResponse.text();
-                    console.error('Resend API error:', errorText);
-                    return new Response(JSON.stringify({ error: errorText }), {
-                        status: resendResponse.status,
-                        headers: { 'Content-Type': 'application/json' }
-                    });
-                }
-
                 const result = await resendResponse.json() as any;
                 return new Response(JSON.stringify(result), {
-                    status: 200,
+                    status: resendResponse.ok ? 200 : 400,
                     headers: { 'Content-Type': 'application/json' }
                 });
             }
 
-            // Normal Static Asset Fetching
-            const response = await env.ASSETS.fetch(request);
+            // 2. Asset Fetching (SPA Fix)
+            // Check if ASSETS binding exists (it should be provided by Cloudflare Pages)
+            const assets = env.ASSETS || env.assets;
+
+            if (!assets) {
+                const availableKeys = Object.keys(env).join(', ');
+                throw new Error(`Cloudflare Configuration Issue: The 'ASSETS' binding is missing. (Available bindings: ${availableKeys || 'none'}). Please ensure you are deploying as a "Pages" project and not a standalone "Worker".`);
+            }
+
+            let response = await assets.fetch(request);
 
             // SPA Fallback: If 404 on a page route (no file extension), serve index.html
             if (response.status === 404 && !url.pathname.includes('.')) {
-                const indexRequest = new Request(new URL('/index.html', request.url));
-                return env.ASSETS.fetch(indexRequest);
+                const indexUrl = new URL('/index.html', request.url);
+                return assets.fetch(indexUrl);
             }
 
             return response;
+
         } catch (err: any) {
             console.error('Worker error:', err);
-            return new Response(`Diagnostic Check: Refresh Error. (Details: ${err.message})`, {
+            return new Response(`Worker Diagnostic: ${err.message}`, {
                 status: 500,
                 headers: { 'Content-Type': 'text/plain' }
             });
