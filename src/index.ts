@@ -19,12 +19,12 @@ export default {
 
                 const htmlBody = `
                     <div style="${emailStyles}">
-                        <div style="${headerStyles}"><h2>${isQuotation ? 'New Quotation' : 'New Inquiry'}</h2></div>
+                        <div style="${headerStyles}"><h2>${isQuotation ? 'New Quotation Request' : 'New Contact Inquiry'}</h2></div>
                         <p><strong>Name:</strong> ${name}</p>
                         <p><strong>Email:</strong> ${email}</p>
                         <p><strong>Service:</strong> ${service || 'General'}</p>
-                        ${details ? `<p><strong>Details:</strong><br/>${details}</p>` : ''}
-                        <p><strong>Message:</strong></p><p>${message || 'None'}</p>
+                        ${details ? `<p><strong>Quote Details:</strong><br/>${details}</p>` : ''}
+                        <p><strong>Message:</strong></p><p>${message || 'No message provided.'}</p>
                         ${fileLinksHtml}
                     </div>
                 `;
@@ -37,15 +37,24 @@ export default {
                     },
                     body: JSON.stringify({
                         from: 'Damascus Translation <onboarding@resend.dev>',
-                        to: ['jalalaljabri63@gmail.com'],
+                        to: ['damascustranslation@gmail.com'], // Updated recipient
                         subject: `${isQuotation ? '⚡ QUOTE' : '✉️ CONTACT'}: ${name}`,
                         html: htmlBody,
                     }),
                 });
 
+                if (!resendResponse.ok) {
+                    const errorText = await resendResponse.text();
+                    console.error('Resend API error:', errorText);
+                    return new Response(JSON.stringify({ error: errorText }), {
+                        status: resendResponse.status,
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                }
+
                 const result = await resendResponse.json() as any;
                 return new Response(JSON.stringify(result), {
-                    status: resendResponse.ok ? 200 : 400,
+                    status: 200,
                     headers: { 'Content-Type': 'application/json' }
                 });
             }
@@ -53,16 +62,18 @@ export default {
             // Normal Static Asset Fetching
             let response = await env.ASSETS.fetch(request);
 
-            // SPA Fallback: If 404 on a page route, serve index.html
+            // SPA Fallback: If 404 on a page route (no file extension), serve index.html
+            // We check for !url.pathname.includes('.') to avoid serving index.html for missing images/css
             if (response.status === 404 && !url.pathname.includes('.')) {
-                const indexRequest = new Request(new URL('/index.html', request.url), request);
-                response = await env.ASSETS.fetch(indexRequest);
+                const indexUrl = new URL('/index.html', request.url);
+                return env.ASSETS.fetch(indexUrl);
             }
 
             return response;
         } catch (err: any) {
-            // EXPOSE THE ERROR: This will show up in the browser instead of 1011
-            return new Response(`Worker Critical Error: ${err.message}\n${err.stack}`, {
+            console.error('Worker error:', err);
+            // Return a simple friendly message for now, or just let Cloudflare handle it
+            return new Response(`Oops! Something went wrong. If this persists, please contact support. (Error: ${err.message})`, {
                 status: 500,
                 headers: { 'Content-Type': 'text/plain' }
             });
