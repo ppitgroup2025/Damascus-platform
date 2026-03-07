@@ -151,28 +151,50 @@ const Home = () => {
   return (
     <div>
       {/* HERO SECTION */}
-      <section className="hero-section">
+      <section className="hero-clean">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-6 mb-4 mb-lg-0 hero-text-col">
-              <h1 className="display-4 fw-bold mb-3">{c.heroTitle}</h1>
-              <p className="lead mb-4">{c.heroDesc}</p>
-              <ul className="list-unstyled mb-4">
+          <div className="row align-items-center hero-row">
+
+            <div className="col-lg-6 hero-left order-lg-1">
+
+              <h1 className="hero-title">
+                {c.heroTitle}
+              </h1>
+
+              <p className="hero-desc">
+                {c.heroDesc}
+              </p>
+
+              <ul className="hero-list">
                 {c.heroPoints.map((point, idx) => (
-                  <li key={idx} className="mb-2">
-                    <i className={clsx("fas fa-check-circle text-success", language === 'ar' ? 'ms-2' : 'me-2')}></i>
-                    {point}
+                  <li key={idx} className="hero-list-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>{point}</span>
                   </li>
                 ))}
               </ul>
-              <Link to={`/${language}/quotation`} className="btn btn-primary px-4 py-2 fw-bold">
-                {t('getQuote')}
-              </Link>
+
+              <div className="hero-actions">
+                <Link
+                  to={`/${language}/quotation`}
+                  className="btn-hero-primary"
+                >
+                  {t('getQuote')}
+                </Link>
+              </div>
+
             </div>
-            <div className="col-lg-6 text-center">
-              {/* UPDATED HERO IMAGE PATH */}
-              <img src="/images/heroimgicon.png" className="img-fluid hero-image" alt="Translation Illustration" />
+
+            <div className="col-lg-6 hero-right text-center order-lg-2">
+              <div className="hero-image-container">
+                <img
+                  src="/images/translation-illustration.png.png"
+                  className="hero-image"
+                  alt="Translation services"
+                />
+              </div>
             </div>
+
           </div>
         </div>
       </section>

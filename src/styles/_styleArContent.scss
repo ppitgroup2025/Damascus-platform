@@ -89,69 +89,12 @@ li,
 }
 
 /* --- MAIN PAGE SECTIONS --- */
-/* --- HERO SECTION (Arabic mirror of English) --- */
-.hero-section {
-  padding: 100px 0 80px;
-  position: relative;
-  background: linear-gradient(90deg, #5de0e6, #004aad);
-  color: #fff;
-  overflow: hidden;
-  min-height: 600px;
-}
-
-.hero-content {
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  direction: rtl;
-  /* ensure RTL alignment */
-}
-
-.hero-text-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  /* mirror English but RTL */
-  width: 100%;
-  position: relative;
-  z-index: 3;
-}
-
-.hero-text-box {
-  padding: 30px;
-  max-width: 600px;
-  text-align: right;
-  /* Arabic alignment */
-}
-
-.hero-text-col {
-  padding: 0;
-}
-
-/* Hero image styles for Arabic */
-.hero-image {
-  position: absolute;
-  left: -190px;
-  right: auto;
-  /* Reset right positioning */
-  /* Move further away from text */
-  top: 50%;
-  transform: translateY(-50%) scaleX(-1);
-  /* Flip horizontally */
-  max-width: 90%;
-  /* 3x larger than before (40% * 3 = 120%) */
-  height: auto;
-  z-index: 2;
-}
-
-/* Remove text-stroke effect for Arabic hero title to mirror English solid appearance */
-.hero-section h1 {
-  color: #fff !important;
-  /* Solid white text instead of transparent */
-  -webkit-text-stroke: 0 !important;
-  /* Remove the stroke */
-  text-stroke: 0 !important;
-}
+/* HERO SECTION OVERRIDES REMOVED TO ADHERE TO GLOBAL CONCEPT B DESIGN */
+/* 
+.hero-section { ... }
+.hero-content { ... }
+... 
+*/
 
 /* ... skipped lines ... */
 .quote-slide-btn {
