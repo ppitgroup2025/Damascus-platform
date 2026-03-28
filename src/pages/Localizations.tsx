@@ -6,8 +6,8 @@ const Localizations = () => {
 
     const content = {
         en: {
-            pageTitle: "Digital Localization Services - Damascus Translation",
-            headerTitle: "Digital Localization Services",
+            pageTitle: "Interpretation Services - Damascus Translation",
+            headerTitle: "Interpretation Services",
             headerSubtitle: "Real-Time Interpretation Solutions - Bridging Language Barriers.",
             mainImg: "/images/students-working-study-group.jpg",
             features: [
@@ -17,11 +17,11 @@ const Localizations = () => {
                 },
                 {
                     title: "Remote Interpretation",
-                    desc: "Video Conference Support (Zoom/Teams)\nPhone Interpretation | Webinar Coverage\n24/7 Emergency Interpretation"
+                    desc: "Video Conference Support (Zoom/Teams)\nPhone Interpretation | Webinar Coverage"
                 },
                 {
                     title: "Specialized Sectors",
-                    desc: "Government Meetings | NGO Field Missions | Business Negotiations\nAcademic Conferences | Healthcare Encounters"
+                    desc: "Government Meetings | NGO Field Missions | Academic Conferences | Healthcare Encounters"
                 }
             ],
             commitmentTitle: "Our Commitment to Excellence",
@@ -36,33 +36,25 @@ const Localizations = () => {
             ctaBtn: "Get a Quote"
         },
         ar: {
-            pageTitle: "خدمات التوطين الرقمي - دمشق للترجمة",
-            headerTitle: "التوطين الرقمي",
-            headerSubtitle: "تجاوز حدود الترجمة. نحن نكيف محتواك الرقمي وبرمجياتك وحملاتك التسويقية للتواصل مع الجماهير المحلية على المستوى الثقافي والوظيفي.",
+            pageTitle: "خدمات الترجمة الفورية - دمشق للترجمة",
+            headerTitle: "خدمات الترجمة الفورية",
+            headerSubtitle: "حلول الترجمة الفورية - جسرٌ للتواصل وتذليل الحواجز اللغوية",
             sessionExpired: 'انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.',
             checkEmailConfirmation: 'تم إنشاء الحساب! يرجى التحقق من بريدك الإلكتروني للتأكيد.',
             invalidCredentials: 'بيانات الاعتماد غير صالحة. إذا قمت بالتسجيل للتو، يرجى التحقق من بريدك الإلكتروني.',
             mainImg: "/images/students-working-study-group.jpg",
-            sections: [
+            features: [
                 {
-                    title: "توطين المواقع الإلكترونية",
-                    desc: "الموقع الإلكتروني العالمي الناجح يبدو محلياً لكل زائر. نحن نتجاوز الترجمة الحرفية لنكيف تجربة المستخدم بأكملها، من واجهة المستخدم والصور إلى طرق الدفع والعادات المحلية.",
-                    list: [
-                        { label: "التكيف الثقافي:", text: "تعديل الرسومات والألوان والأسلوب ليتوافق مع القيم المحلية." },
-                        { label: "تحسين محركات البحث التقني (SEO):", text: "تنفيذ علامات hreflang، وتحسين الكلمات المفتاحية المحلية، وهياكل المواقع الدولية." },
-                        { label: "التكامل مع أنظمة إدارة المحتوى:", text: "العمل مباشرة داخل نظام إدارة المحتوى الخاص بك لسير عمل سلس." }
-                    ],
-                    reverse: false
+                    title: "الترجمة الفورية",
+                    desc: "الترجمة الفورية (المؤتمرات) | الترجمة التتبعية (الاجتماعات وورش العمل)\nالزيارات الميدانية | جلسات المحاكم | الاستشارات الطبية"
                 },
                 {
-                    title: "توطين البرمجيات وتطبيقات الجوال",
-                    desc: "أطلق برامجك أو تطبيقاتك في أسواق جديدة بثقة. يعمل مهندسو التوطين واللغويون لدينا معاً لضمان أن تطبيقك عملي، سهل الاستخدام، ومناسب ثقافياً للمستخدمين في كل مكان.",
-                    list: [
-                        { label: "تكييف واجهة المستخدم/تجربة المستخدم:", text: "تغيير حجم مربعات الحوار وتعديل التخطيطات لتناسب اللغات المختلفة." },
-                        { label: "استخراج النصوص البرمجية:", text: "فصل النصوص المضمنة في الكود لتسهيل عملية الترجمة." },
-                        { label: "الاختبار اللغوي والوظيفي:", text: "ضمان جودة صارم لاكتشاف الأخطاء والتناقضات الثقافية قبل الإصدار." }
-                    ],
-                    reverse: true
+                    title: "الترجمة الفورية عن بُعد",
+                    desc: "ترجمة وقائع المؤتمرات عبر تطبيقات (Zoom/Teams) | الترجمة عبر الهاتف"
+                },
+                {
+                    title: "قطاعات متخصصة",
+                    desc: "الاجتماعات الحكومية | البعثات الميدانية للمنظمات | المؤتمرات الأكاديمية | اللقاءات الطبية"
                 }
             ],
             commitmentTitle: "التزامنا بالتميز",
@@ -96,46 +88,21 @@ const Localizations = () => {
             {/* Main Content Section */}
             <section className="service-detail-section">
                 <div className="container">
-                    {language === 'en' ? (
-                        <>
-                            <div className="row justify-content-center mb-5">
-                                <div className="col-md-8 text-center">
-                                    <img src={c.mainImg} className="img-fluid rounded-3 shadow-sm" alt="Interpretation services visual" />
+                    <div className="row justify-content-center mb-5">
+                        <div className="col-md-8 text-center">
+                            <img src={c.mainImg} className="img-fluid rounded-3 shadow-sm" alt="Interpretation services visual" />
+                        </div>
+                    </div>
+                    <div className="row g-4">
+                        {c.features.map((feature: any, idx: number) => (
+                            <div className="col-md-6 col-lg-4" key={idx}>
+                                <div className={`feature-card h-100 ${language === 'ar' ? 'text-end' : ''}`}>
+                                    <h5 className="category-title">{feature.title}</h5>
+                                    <p className="category-items" style={{ whiteSpace: 'pre-line' }}>{feature.desc}</p>
                                 </div>
                             </div>
-                            <div className="row g-4">
-                                {c.features.map((feature: any, idx: number) => (
-                                    <div className="col-md-6 col-lg-4" key={idx}>
-                                        <div className="feature-card h-100">
-                                            <h5 className="category-title">{feature.title}</h5>
-                                            <p className="category-items" style={{ whiteSpace: 'pre-line' }}>{feature.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            {c.sections.map((sec: any, idx: number) => (
-                                <div className={`row align-items-center g-5 mb-5 ${sec.reverse ? 'flex-row-reverse' : ''}`} key={idx}>
-                                    <div className="col-lg-6">
-                                        <img src={c.mainImg} className="img-fluid rounded-3 shadow-sm" alt={sec.title} />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <h2>{sec.title}</h2>
-                                        <p>{sec.desc}</p>
-                                        <ul>
-                                            {sec.list.map((item: any, i: number) => (
-                                                <li key={i}>
-                                                    <strong>{item.label}</strong> {item.text}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            ))}
-                        </>
-                    )}
+                        ))}
+                    </div>
                 </div>
             </section>
 

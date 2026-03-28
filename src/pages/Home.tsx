@@ -13,7 +13,7 @@ const Home = () => {
   const content = {
     en: {
       heroTitle: "Delivering Quality Translation Services",
-      heroDesc: "Damascus Translation Office delivers certified multilingual translations for businesses, NGOs, and government entities. Our Yemen-based team of expert translators specializes in",
+      heroDesc: "Damascus Translation Office delivers certified multilingual translations for businesses, NGOs, and government entities. Our team of expert translators specializes in",
       heroPoints: [
         "Legal & Financial Documents",
         "Medical & Technical Manuals",
@@ -65,13 +65,13 @@ const Home = () => {
       send: "Send"
     },
     ar: {
-      heroTitle: "ترجمات معتمدة...سريعة وموثوقة",
-      heroDesc: "تقدم دمشق للترجمة خدمات ترجمة معتمدة وتجارية سهلة الطلب وبأسعار معقولة ودقيقة ويتم تسليمها بسرعة - نعمل على مبدأ الموثوقية والكفاءة، مما يجعلنا الخيار الأول",
+      heroTitle: "تقديم خدمات ترجمة متميزة",
+      heroDesc: "يقدم مكتب دمشق للترجمة خدمات ترجمة معتمدة ومتعددة اللغات للشركات والمنظمات غير الحكومية والجهات الحكومية. يتخصص فريقنا من المترجمين المحترفين في عدة مجالات بما في ذلك:",
       heroPoints: [
-        "ترجمات معتمدة وقانونية لأكثر من 25 دولة",
-        "ترجمات متخصصة للاستخدام التجاري والقانوني",
-        "خدمات التوثيق القانوني العالمي (أبوستيل)",
-        "خدمات الترجمة الطبية والتقنية",
+        "الوثائق القانونية والمالية",
+        "الأدلة الطبية والتقنية",
+        "المواد التسويقية والأكاديمية",
+        "تعريب الوسائط والترجمة المرئية",
         "الترجمة الفورية للمؤتمرات"
       ],
       servicesTitle: "خدمات الترجمة لدينا",

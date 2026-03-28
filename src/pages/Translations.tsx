@@ -44,17 +44,17 @@ const Translations = () => {
                 {
                     icon: "fa-solid fa-users-gear",
                     title: "Expert Linguists",
-                    desc: "Our global network consists of native-speaking, subject-matter experts in over 100 languages."
+                    desc: "Our team includes a select group of highly qualified professional translators in various disciplines."
                 },
                 {
                     icon: "fa-solid fa-bolt",
                     title: "Fast Turnaround",
-                    desc: "We leverage cutting-edge technology to deliver high-quality translations on your schedule."
+                    desc: "We leverage professional human insight and advanced tools to deliver high-quality translations on your schedule."
                 },
                 {
                     icon: "fa-solid fa-shield-halved",
                     title: "Confidentiality",
-                    desc: "Your documents are handled with the utmost security, protected by strict NDAs and secure servers."
+                    desc: "Your documents are handled with the utmost security, protected by strict NDAs and advanced data protection protocols."
                 }
             ],
             ctaTitle: "Ready to Start Your Project?",
@@ -62,32 +62,32 @@ const Translations = () => {
             ctaBtn: "Get a Quote"
         },
         ar: {
-            pageTitle: "خدمات الترجمة واللغات",
-            pageSubtitle: "ترجمات دقيقة، معتمدة، ومناسبة ثقافياً لجمهور عالمي. نهتم بكل التفاصيل لضمان وصول رسالتك بشكل مثالي في أي مكان في العالم.",
+            pageTitle: "الترجمة الاحترافية للوثائق والمستندات",
+            pageSubtitle: "ترجمة معتمدة وموثوقة.. دقة واتقان في مختلف المجالات",
             categories: [
                 {
                     title: "الترجمة القانونية",
-                    items: "العقود والاتفاقيات | الوثائق القضائية | حقوق النشر والعلامات التجارية | التراخيص | أوراق التحكيم | الشروط والأحكام"
+                    items: "العقود والاتفاقيات | وثائق التقاضي | العلامات التجارية وحقوق النشر | التراخيص | أوراق التحكيم | الشروط والأحكام"
                 },
                 {
                     title: "الترجمة التقنية",
-                    items: "أدلة التشغيل | أوراق علمية | نشرات فنية | كتيبات المستخدم | الطاقة المتجددة | إجراءات التشغيل"
+                    items: "الأدلة الهندسية | الأوراق العلمية | صحائف البيانات التقنية | أدلة المستخدم | وثائق الطاقة المتجددة | إجراءات التشغيل"
                 },
                 {
                     title: "الترجمة الطبية",
-                    items: "سجلات المرضى | الدوريات الطبية | ملصقات الأدوية | تقارير الحالات | كتيبات الأجهزة الطبية | النتائج البحثية"
+                    items: "سجلات المرضى | المجلات الطبية | ملصقات الأدوية | التقارير المرضية | أدلة الأجهزة الطبية | نتائج البحوث"
                 },
                 {
                     title: "الترجمة المالية",
-                    items: "وثائق البنوك | تقارير مالية | الميزانيات | تقارير الامتثال | السجلات المحاسبية | المراسلات"
+                    items: "الوثائق المصرفية | التقارير المالية | الميزانيات العمومية | الامتثال لمكافحة غسل الأموال وتمويل الإرهاب | السجلات المحاسبية | المراسلات التجارية"
                 },
                 {
                     title: "الترجمة الأكاديمية",
-                    items: "أبحاث علمية | رسائل ماجستير ودكتوراه | كتب تعليمية | شهادات | مشاريع تعليمية | مقالات أكاديمية"
+                    items: "الأوراق البحثية | رسائل الماجستير والدكتوراه | المناهج الدراسية | الشهادات | المشاريع التعليمية | المقالات الأكاديمية"
                 },
                 {
-                    title: "ترجمة التسويق والإعلام",
-                    items: "بيانات صحفية | حملات إعلانية | محتوى السوشال ميديا | كتيبات | مواقع إلكترونية | نشرات إخبارية"
+                    title: "ترجمة الوسائط والتسويق",
+                    items: "البيانات الصحفية | الحملات الإعلانية | محتوى التواصل الاجتماعي | الكتيبات التعريفية | المواقع الإلكترونية | النشرات الإخبارية"
                 }
             ],
             commitmentTitle: "التزامنا بالتميز",
@@ -95,22 +95,22 @@ const Translations = () => {
                 {
                     icon: "fa-solid fa-check-double",
                     title: "ضمان الجودة",
-                    desc: "تخضع كل ترجمة لعملية مراجعة متعددة الخطوات لضمان الدقة والاتساق."
+                    desc: "تخضع كل ترجمة لعملية مراجعة متعددة المراحل لضمان أعلى مستويات الدقة والاتساق."
                 },
                 {
                     icon: "fa-solid fa-users-gear",
                     title: "خبراء لغويون",
-                    desc: "تتألف شبكتنا العالمية من خبراء ناطقين باللغة الأم ومتخصصين في مجالاتهم بأكثر من 100 لغة."
+                    desc: "يضم فريقنا نخبة من المترجمين المحترفين ذوي الكفاءة في مختلف التخصصات"
                 },
                 {
                     icon: "fa-solid fa-bolt",
-                    title: "تسليم سريع",
-                    desc: "نحن نستخدم أحدث التقنيات لتقديم ترجمات عالية الجودة في الموعد المحدد."
+                    title: "سرعة التنفيذ",
+                    desc: "نعتمد على الخبرات البشرية الاحترافية والتقنيات المتطورة لتقديم ترجمات عالية الجودة وفق جداولكم الزمنية."
                 },
                 {
                     icon: "fa-solid fa-shield-halved",
-                    title: "السرية",
-                    desc: "يتم التعامل مع مستنداتك بأقصى درجات الأمان، محمية باتفاقيات سرية صارمة وخوادم آمنة."
+                    title: "السرية والخصوصية",
+                    desc: "نتعامل مع وثائقكم بأقصى درجات الأمان، محميةً باتفاقيات عدم إفصاح صارمة وبروتوكولات متطورة لحماية البيانات."
                 }
             ],
             ctaTitle: "هل أنت مستعد لبدء مشروعك؟",
