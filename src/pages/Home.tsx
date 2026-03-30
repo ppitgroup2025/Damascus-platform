@@ -46,7 +46,7 @@ const Home = () => {
       steps: [
         { title: "1. Upload Your Documents", desc: "Send us your files online or by email. We accept all formats and ensure confidentiality.", icon: "fas fa-upload" },
         { title: "2. Get a Quote & Confirm", desc: "Receive a transparent quote. Confirm your order and we’ll assign a specialist translator.", icon: "fas fa-user-check" },
-        { title: "3. Receive Your Translation", desc: "Get your certified translation delivered digitally or by post, ready for official use.", icon: "fas fa-file-signature" }
+        { title: "3. Receive Your Translation", desc: "Get your certified translation delivered digitally or as a hard copy.", icon: "fas fa-file-signature" }
       ],
       resourcesTitle: "Resources",
       resources: [
@@ -83,23 +83,23 @@ const Home = () => {
           icon: "fas fa-file-alt"
         },
         {
-          title: "ترجمة المواقع الإلكترونية",
-          desc: "ترجمة وتكييف ثقافي كامل لموقعك الإلكتروني لجعل محتواك يتناسب مع الجمهور الدولي المستهدف.",
+          title: "خدمات الترجمة الفورية المتخصصة",
+          desc: "- الترجمة الشفوية الفورية<br />- الترجمة التتابعية<br />- الترجمة عن بعد",
           link: `/ar/services/localizations`,
           icon: "fas fa-headset"
         },
         {
           title: "الحلول الإبداعية",
-          desc: "- إنشاء المحتوى<br />- فيديوهات توضيحية<br />- تدقيق لغوي",
+          desc: "- تطوير المحتوى<br />- حلول الوسائط<br />- تحسين جودة المحتوى",
           link: `/ar/services/solutions`,
           icon: "fas fa-photo-video"
         }
       ],
-      howTitle: "كيف تعمل الخدمة",
+      howTitle: "آلية العمل",
       steps: [
-        { title: "1. حمّل مستنداتك", desc: "أرسل لنا ملفاتك عبر الإنترنت أو البريد الإلكتروني. نقبل جميع الصيغ ونضمن السرية.", icon: "fas fa-upload" },
-        { title: "2. احصل على عرض سعر وأكد", desc: "استلم عرض سعر شفاف. أكد طلبك وسنعين مترجم متخصص.", icon: "fas fa-user-check" },
-        { title: "3. استلم ترجمتك", desc: "احصل على ترجمتك المعتمدة عبر البريد الإلكتروني أو البريد العادي، جاهزة للاستخدام الرسمي.", icon: "fas fa-file-signature" }
+        { title: "1. إرسال الملفات المطلوبة", desc: "أرسل لنا ملفاتك عبر الموقع أو البريد الإلكتروني. نقبل كافة الملفات، ونضمن لك السرية التامة لبياناتك.", icon: "fas fa-upload" },
+        { title: "2. تقديم عرض سعر والموافقة على العمل", desc: "ستتلقى عرض سعر واضحاً وشفافاً. بمجرد تأكيدك للطلب، سنقوم بتكليف مترجم متخصص بمشروعك فوراً.", icon: "fas fa-user-check" },
+        { title: "3. تسليم العمل النهائي", desc: "استلم ترجمتك المعتمدة من خلال نسخة رقمية أو نسخة ورقية، بحيث تكون جاهزة ومعتمدة تماماً للاستخدام.", icon: "fas fa-file-signature" }
       ],
       resourcesTitle: "المصادر",
       resources: [

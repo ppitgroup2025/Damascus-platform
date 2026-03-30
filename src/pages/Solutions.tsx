@@ -12,15 +12,15 @@ const Solutions = () => {
       features: [
         {
           title: "Content Development",
-          items: "Multilingual Copywriting | Transcreation | Brand Localization\nMarketing Content | Technical Writing | Press Kits"
+          items: "Copywriting | Website Content | Tutorials | Marketing Content | Report Writing | Visual Content | Press Kits"
         },
         {
           title: "Media Solutions",
-          items: "Video Subtitling (Films/Documentaries/E-learning)\nTranscription (Interviews/Meetings) | Voice-over Scripts"
+          items: "Video Subtitling (Films/Documentaries/E-learning) | Transcription (Interviews/Meetings) | Voice-over Scripts"
         },
         {
           title: "Quality Enhancement",
-          items: "Professional Proofreading | Terminology Management\nFormatting & Desktop Publishing | Consistency Checks"
+          items: "Professional Proofreading | Terminology Management | Formatting & Desktop Publishing | Consistency Checks"
         }
       ],
       ctaTitle: "Bring Your Creative Vision to Life?",
@@ -28,45 +28,33 @@ const Solutions = () => {
       ctaBtn: "Get a Quote"
     },
     ar: {
-      pageTitle: "حلول لغوية إبداعية",
-      pageSubtitle: "تجاوز حدود الترجمة - ابتكار المحتوى ومواءمة الوسائط",
+      pageTitle: "الحلول اللغوية الإبداعية",
+      pageSubtitle: "تخطّ حدود الترجمة: إبداع المحتوى والمعالجة الإعلامية",
       sections: [
         {
-          title: "إنشاء المحتوى متعدد اللغات",
-          desc: "تفاعل مع جمهورك العالمي بمحتوى أصلي وعالي الجودة تم إنشاؤه بواسطة فريقنا من الكتاب والاستراتيجيين الدوليين. نحن نطور محتوى لم تتم ترجمته فحسب، بل وُلد من فهم عميق للثقافة المستهدفة.",
+          title: "تطوير المحتوى",
+          desc: "كتابة المحتوى الإعلاني | محتوى المواقع الإلكترونية | شروحات تعليمية | المحتوى التسويقي | كتابة التقارير | المحتوى المرئي | المواد الإعلامية والصحفية",
           img: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
-          list: [
-            { bold: "المقالات والمنشورات:", text: "محتوى مُحسَّن لمحركات البحث يجذب الزوار ويرسخ المصداقية." },
-            { bold: "محتوى وسائل التواصل الاجتماعي:", text: "منشورات ذات صلة ثقافية تثير التفاعل." },
-            { bold: "النصوص التسويقية:", text: "نصوص إعلانية مقنعة، صفحات هبوط، وحملات بريد إلكتروني تحقق التحويلات." }
-          ],
+          list: [],
           reverse: false
         },
         {
-          title: "الفيديوهات التوضيحية",
-          desc: "بسّط الأفكار المعقدة واجذب انتباه جمهورك بفيديوهات رسوم متحركة توضيحية مخصصة. نتولى عملية الإنتاج بأكملها، من كتابة السيناريو والتصوير القصصي إلى الرسوم المتحركة والتعليق الصوتي متعدد اللغات.",
+          title: "حلول الوسائط",
+          desc: "ترجمة الوسائط (أفلام / وثائقيات / التعليم الإلكتروني)\nالتفريغ الصوتي (المقابلات / الاجتماعات) | نصوص التعليق الصوتي",
           img: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80",
-          list: [
-            { bold: "رسوم متحركة ثنائية وثلاثية الأبعاد:", text: "رسوم متحركة عالية الجودة تتناسب مع هوية علامتك التجارية." },
-            { bold: "توطين السيناريو:", text: "تكييف النص ليكون فعالاً ثقافياً، وليس مجرد ترجمة حرفية." },
-            { bold: "مواهب صوتية عالمية:", text: "شبكة من المعلقين الصوتيين المحترفين لسرد أصيل." }
-          ],
+          list: [],
           reverse: true
         },
         {
-          title: "التدقيق اللغوي والتحرير",
-          desc: "تأكد من أن المحتوى الخاص بك لا تشوبه شائبة واحترافي وجاهز للنشر. يقوم محررونا الخبراء بمراجعة مستنداتك للتأكد من الدقة النحوية والأسلوب والنبرة والملاءمة الثقافية، مما يضيف اللمسة النهائية التي تبني المصداقية.",
+          title: "تحسين جودة المحتوى",
+          desc: "التدقيق اللغوي الاحترافي | إدارة المصطلحات\nتنسيق التصاميم والمطبوعات | ضمان اتساق المحتوى",
           img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80",
-          list: [
-            { bold: "التحرير الأكاديمي:", text: "إتقان الأبحاث والأطروحات والرسائل العلمية." },
-            { bold: "التدقيق اللغوي للأعمال:", text: "صقل التقارير والمقترحات والمواد التسويقية." },
-            { bold: "المراجعة بعد الترجمة:", text: "فحص نهائي من قبل لغوي ناطق باللغة الأم لضمان الجودة." }
-          ],
+          list: [],
           reverse: false
         }
       ],
-      ctaTitle: "هل أنت مستعد لإحياء رؤيتك الإبداعية؟",
-      ctaSubtitle: "دعنا نبني شيئاً رائعاً معاً. احصل على عرض سعر مجاني وغير ملزم من فريقنا الإبداعي.",
+      ctaTitle: "هل تودّ تحويل رؤيتك الإبداعية إلى واقع ملموس؟",
+      ctaSubtitle: "لنبني التميّز معاً. احصل الآن على عرض سعر مجاني وغير ملزم من فريقنا الإبداعي.",
       ctaBtn: "احصل على عرض سعر"
     }
   };
