@@ -8,7 +8,7 @@ const QuoteSlideButton = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const hero = document.querySelector('.hero-section') as HTMLElement;
+            const hero = document.querySelector('.hero-clean') as HTMLElement;
             const contact = document.getElementById('contact') as HTMLElement;
             const navbarHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 80;
 

@@ -117,11 +117,6 @@ const Header = () => {
                 </button>
               )}
             </li>
-            <li className="nav-item w-100 w-lg-auto">
-              <Link to={`/${language}/quotation`} className="navbar-custom-btn fw-bold w-100" onClick={closeNav}>
-                {t('getQuote')}
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
